@@ -13,3 +13,8 @@
 ![](Task-2/Screenshots/Output-2.1.png)
 ![](Task-2/Screenshots/Output-2.2.png)
 ![](Task-2/Screenshots/Output-2.3.png)
+
+## Task-3 Output
+----------------
+
+![](Task-3/Screenshots/Output-3.png)
