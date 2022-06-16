@@ -5,13 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task-1</title>
+    <title>L3Task-1</title>
     <style>
         body {
             background-color: grey;
+            padding-left: 25px;
+            text-align: left;
         }
+
         .error {
             color: red;
+        }
+
+        div {
+            text-align: right;
+
+            width: 270px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        .others {
+            text-align: left;
         }
     </style>
 </head>
@@ -19,57 +34,52 @@
 <body>
     <?php
     // define variables and set to empty values
-    $nameErr = $emailErr = $genderErr = $websiteErr = "";
-    $name = $email = $gender = $comment = $website = "";
+    $usernameError = $passwordError = "";
+    $username = $password = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["name"])) {
-            $nameErr = "Name is required";
+        if (empty($_POST["username"])) {
+            $usernameError = "User Name is required";
+        } elseif (strlen($_POST["username"]) < 2) {
+            $usernameError = "Username must be atleast 2 characters length";
         } else {
-            $name = $_POST["name"];
+            $username = $_POST["username"];
             // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
-                $nameErr = "Only letters and white space allowed";
+            if (!preg_match("/^[a-zA-Z0-9-_ ]+$/", $username)) {
+                $usernameError = "Special characters are not allowed";
             }
         }
 
-        if (empty($_POST["email"])) {
-            $emailErr = "Email is required";
+        if (empty($_POST["password"])) {
+            $passwordError = "Password is required";
+        } elseif (strlen($_POST["password"]) < 8) {
+            $passwordError = "Password must be 8 characters long";
         } else {
-            $email = $_POST["email"];
-            // check if e-mail address is well-formed
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "Invalid email format";
+            $password = $_POST["password"];
+            // check if password is well-formed
+            if (!preg_match("/\W/", $password)) {
+                $passwordError = "Should have atleast one special character";
             }
         }
     }
-
     ?>
 
     <h2>LOGIN</h2>
-    <p><span class="error">* required field</span></p>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        User Name: <input type="text" name="name" value="<?php echo $name; ?>">
-        <span class="error">* <?php echo $nameErr; ?></span>
-        <br><br>
-        Password: <input type="text" name="email" value="<?php echo $email; ?>">
-        <span class="error">* <?php echo $emailErr; ?></span>
-        <br><br>
-        <input type="submit" name="submit" id="submit">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <div>
+            User Name : <input type="text" name="username" value="<?php echo $username; ?>">
+            <span style="font-size: 14px;" class="error"><?php echo $usernameError; ?></span>
+        </div>
+        <div>
+            Password : <input type="password" name="password" value="<?php echo $password; ?>">
+            <span style="font-size: 14px;" class="error"><?php echo $passwordError; ?></span>
+        </div>
+        <div class="others">
+            <input type="checkbox" value="XYZ">
+            <span>Remember Me</span>
+        </div><br>
+        <div class="others"> <input type="submit" name="submit" id="submit"> <a href="">Forgot Password?</a></div>
     </form>
-
-    <?php
-    echo "<h2>Your Input:</h2>";
-    echo $name;
-    echo "<br>";
-    echo $email;
-    echo "<br>";
-    echo $website;
-    echo "<br>";
-    echo $comment;
-    echo "<br>";
-    echo $gender;
-    ?>
 </body>
 
 </html>
