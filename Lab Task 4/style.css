@@ -1,0 +1,28 @@
+body {
+    background-color: grey;
+    padding-left: 25px;
+    padding-top: 25px;
+    text-align: left;
+}
+
+.error {
+    color: red;
+}
+
+div {
+    text-align: left;
+    width: 420px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.loginPage {
+    text-align: left;
+    width: 400px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.loginInput {
+    float: right;
+}
