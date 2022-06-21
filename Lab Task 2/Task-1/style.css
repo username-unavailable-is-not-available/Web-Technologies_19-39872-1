@@ -1,0 +1,20 @@
+body {
+  background-color: grey;
+  padding-left: 25px;
+  padding-top: 25px;
+  text-align: left;
+}
+
+.error {
+  color: red;
+}
+
+div {
+  width: 370px;
+  padding: 20px 20px 20px 20px;
+  border: 1px solid black;
+}
+
+span {
+    font-weight: bold;
+}

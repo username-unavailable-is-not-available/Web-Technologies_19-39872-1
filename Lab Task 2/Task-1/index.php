@@ -1,186 +1,111 @@
-<<<<<<< HEAD
-<!DOCTYPE HTML>
-<html>
-
-<head>
-  <style>
-    .error {
-      color: #FF0000;
-    }
-  </style>
-</head>
-
-<body>
-
-  <?php
-  // define variables and set to empty values
-  $nameErr = $emailErr = $genderErr = $websiteErr = "";
-  $name = $email = $gender = $comment = $website = "";
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["name"])) {
-      $nameErr = "Name is required";
-    } else {
-      $name = $_POST["name"];
-      // check if name only contains letters and whitespace
-      if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
-        $nameErr = "Only letters and white space allowed";
-      }
-    }
-
-    if (empty($_POST["email"])) {
-      $emailErr = "Email is required";
-    } else {
-      $email = $_POST["email"];
-      // check if e-mail address is well-formed
-      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "Invalid email format";
-      }
-    }
-
-    if (empty($_POST["website"])) {
-      $website = "";
-    } else {
-      $website = $_POST["website"];
-      // check if URL address syntax is valid (this regular expression also allows dashes in the URL)
-      if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $website)) {
-        $websiteErr = "Invalid URL";
-      }
-    }
-
-    if (empty($_POST["comment"])) {
-      $comment = "";
-    } else {
-      $comment = $_POST["comment"];
-    }
-
-    if (empty($_POST["gender"])) {
-      $genderErr = "Gender is required";
-    } else {
-      $gender = $_POST["gender"];
-    }
-  }
-
-  ?>
-
-  <h2>PHP Form Validation Example</h2>
-  <p><span class="error">* required field</span></p>
-  <form method="post" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF"]); ?>">
-    Name: <input type="text" name="name" value="<?php echo $name; ?>">
-    <span class="error">*
-      <?php echo $nameErr; ?>
-    </span>
-    <br><br>
-    E-mail: <input type="text" name="email" value="<?php echo $email; ?>">
-    <span class="error">*
-      <?php echo $emailErr; ?>
-    </span>
-    <br><br>
-    Website: <input type="text" name="website" value="<?php echo $website; ?>">
-    <span class="error">
-      <?php echo $websiteErr; ?>
-    </span>
-    <br><br>
-    Comment: <textarea name="comment" rows="5" cols="40"><?php echo $comment; ?></textarea>
-    <br><br>
-    Gender:
-    <input type="radio" name="gender" <?php if (isset($gender) && $gender == "female") echo "checked"; ?> value="female">Female
-    <input type="radio" name="gender" <?php if (isset($gender) && $gender == "male") echo "checked"; ?> value="male">Male
-    <input type="radio" name="gender" <?php if (isset($gender) && $gender == "other") echo "checked"; ?> value="other">Other
-    <span class="error">*
-      <?php echo $genderErr; ?>
-    </span>
-    <br><br>
-    <input type="submit" name="submit" value="Submit">
-  </form>
-
-  <?php
-  echo "<h2>Your Input:</h2>";
-  echo $name;
-  echo "<br>";
-  echo $email;
-  echo "<br>";
-  echo $website;
-  echo "<br>";
-  echo $comment;
-  echo "<br>";
-  echo $gender;
-  ?>
-
-=======
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task-1</title>
-    <style>
-        body {
-            background-color: grey;
-        }
-        .error {
-            color: red;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP Form Validation</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <?php
-    // define variables and set to empty values
-    $nameErr = $emailErr = $genderErr = $websiteErr = "";
-    $name = $email = $gender = $comment = $website = "";
+  <?php
+  $name = $email = $dob = $gender = $degree = $bloodGroup = "";
+  $nameError = $emailError = $dobError = $genderError = $degreeError = $bloodGroupError = "";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["name"])) {
-            $nameErr = "Name is required";
-        } else {
-            $name = $_POST["name"];
-            // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
-                $nameErr = "Only letters and white space allowed";
-            }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["name"])) {
+      $nameError = "Cannot be empty";
+    } else {
+      $name = $_POST["name"];
+      if (!preg_match("/^[a-zA-Z- ]+$/", $name)) {
+        $nameError = "Only letters, dash and periods are allowed";
+      } elseif (!preg_match("/(\w+\s\w+)/", $name)) {
+        $nameError = "Must be two words long";
+      } else {
+        if (!preg_match("/^[\pL]/", $name)) {
+          $nameError = "Must start with a letter";
         }
-
-        if (empty($_POST["email"])) {
-            $emailErr = "Email is required";
-        } else {
-            $email = $_POST["email"];
-            // check if e-mail address is well-formed
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "Invalid email format";
-            }
-        }
+      }
     }
 
-    ?>
+    if (empty($_POST["email"])) {
+      $emailError = "Cannot be empty";
+    } else {
+      $email = $_POST["email"];
+      if (!preg_match("/(\w+)@(\w+){3,}.com/", $email)) {
+        $emailError = "Is not valid";
+      }
+    }
 
-    <h2>LOGIN</h2>
-    <p><span class="error">* required field</span></p>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        User Name: <input type="text" name="name" value="<?php echo $name; ?>">
-        <span class="error">* <?php echo $nameErr; ?></span>
-        <br><br>
-        Password: <input type="text" name="email" value="<?php echo $email; ?>">
-        <span class="error">* <?php echo $emailErr; ?></span>
-        <br><br>
-        <input type="submit" name="submit" id="submit">
-    </form>
+    if (empty($_POST["dob"])) {
+      $dobError = "Cannot be empty";
+    }
+  }
+  ?>
 
-    <?php
-    echo "<h2>Your Input:</h2>";
-    echo $name;
-    echo "<br>";
-    echo $email;
-    echo "<br>";
-    echo $website;
-    echo "<br>";
-    echo $comment;
-    echo "<br>";
-    echo $gender;
-    ?>
->>>>>>> cd4812def37b40246ed9d3b7166e592e9c8946d6
+
+
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+    <div>
+      <span>Name</span><br><br>
+      <input type="text" name="name" value="<?php echo $name?>"><br>
+      <span class="error"><?php echo $nameError?></span>
+    </div>
+    <div>
+      <Span>Email</Span><br><br>
+      <input type="text" name="email" value="<?php echo $email?>"><br>
+      <span class="error"><?php echo $emailError?></span>
+    </div>
+    <div>
+      <span>Date of Birth</span><br><br>
+      <input type="date" name="dob" value="<?php echo $dob?>"><br>
+      <span class="error"><?php echo $dobError?></span>
+    </div>
+    <div>
+      <Span>Gender</Span><br><br>
+      <input type="radio" name="gender" value="male">Male
+      <input type="radio" name="gender" value="female">Female
+      <input type="radio" name="gender" value="other">Other
+    </div>
+    <div>
+      <Span>Degree</Span><br><br>
+      <input type="checkbox" name="degree" value="ssc">SSC
+      <input type="checkbox" name="degree" value="hsc">HSC
+      <input type="checkbox" name="degree" value="bsc">BSc
+      <input type="checkbox" name="degree" value="msc">MSc
+    </div>
+    <div>
+      <span>Blood Group</span><br><br>
+      <select name="list" onchange="combo(this, bloodGroup)">
+        <option>A+</option>
+        <option>B+</option>
+        <option>AB+</option>
+        <option>O+</option>
+      </select>
+    </div>
+    <div>
+      <button>Submit</button>
+    </div>
+  </form>
+
+  <?php
+  echo "<br>";
+  echo "<br>";
+  echo $name;
+  echo "<br>";
+  echo $email;
+  echo "<br>";
+  echo $dob;
+  echo "<br>";
+  echo $gender;
+  echo "<br>";
+  echo $degree;
+  echo "<br>";
+  echo $bloodGroup;
+  ?>
+
 </body>
 
 </html>
