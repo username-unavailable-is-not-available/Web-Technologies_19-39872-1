@@ -14,6 +14,9 @@
   $name = $email = $dob = $gender = $degree = $bloodGroup = "";
   $nameError = $emailError = $dobError = $genderError = $degreeError = $bloodGroupError = "";
 
+  //$dob = "";
+  $range = date('Y', strtotime($dob));
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
       $nameError = "Cannot be empty";
@@ -41,6 +44,16 @@
 
     if (empty($_POST["dob"])) {
       $dobError = "Cannot be empty";
+    } elseif ($range >= 1953 && $range <= 1998) {
+      $dob = $_POST["dob"];
+    } else {
+      $dob = $_POST["dob"];
+    }
+
+    if (empty($_POST["gender"])) {
+      $genderError = "Gender is required";
+    } else {
+      $gender = $_POST["gender"];
     }
   }
   ?>
@@ -65,9 +78,11 @@
     </div>
     <div>
       <Span>Gender</Span><br><br>
-      <input type="radio" name="gender" value="male">Male
-      <input type="radio" name="gender" value="female">Female
-      <input type="radio" name="gender" value="other">Other
+      <input type="radio" name="gender" value="male" <?php if (isset($gender) && $gender=="male") echo "checked";?>>Male
+      <input type="radio" name="gender" value="female" <?php if (isset($gender) && $gender=="female") echo "checked";?>>Female
+      <input type="radio" name="gender" value="other" <?php if (isset($gender) && $gender=="other") echo "checked";?>>Other
+      <br>
+      <span class="error"><?php echo $genderError?></span>
     </div>
     <div>
       <Span>Degree</Span><br><br>
@@ -90,22 +105,22 @@
     </div>
   </form>
 
+  <br><br>
+  <div class="input">
   <?php
+  echo "Name: ", $name;
   echo "<br>";
+  echo "Email: ", $email;
   echo "<br>";
-  echo $name;
+  echo "Date of Birth: ", $dob;
   echo "<br>";
-  echo $email;
+  echo "Gender: ", $gender;
   echo "<br>";
-  echo $dob;
+  echo "Degree: ", $degree;
   echo "<br>";
-  echo $gender;
-  echo "<br>";
-  echo $degree;
-  echo "<br>";
-  echo $bloodGroup;
+  echo "Blood Group: ", $bloodGroup;
   ?>
-
+  </div>
 </body>
 
 </html>
