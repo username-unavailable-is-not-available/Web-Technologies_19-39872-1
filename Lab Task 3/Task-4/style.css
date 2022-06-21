@@ -1,0 +1,58 @@
+body {
+  background-color: grey;
+  padding-left: 25px;
+  text-align: left;
+}
+
+.error {
+  color: red;
+}
+
+div {
+  width: 370px;
+  padding: 20px 20px 40px 20px;
+  border: 1px solid black;
+}
+
+input {
+  float: right;
+  width: 150px;
+}
+
+span {
+  display: block;
+  text-align: left;
+  float: left;
+  width: 150px;
+  /*font-family: 'roboto';*/
+}
+
+.container {
+  width: 370px;
+  padding: 0px 10px 5px 10px;
+  margin: 20px 0px 0px -10px;
+  border: 1px solid black;
+}
+
+.gendermale,
+.genderfemale,
+.genderother {
+  display: inline-block;
+  padding: 0px 0px 0px 0px;
+  margin-top: -10px;
+  border: 1px solid grey;
+}
+
+.dob {
+  width: 200px;
+}
+
+.submit {
+  float: left;
+  cursor: pointer;
+}
+
+.reset {
+  float: right;
+  cursor: pointer;
+}
