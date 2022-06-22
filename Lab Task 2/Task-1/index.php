@@ -14,8 +14,7 @@
   $name = $email = $dob = $gender = $degree = $bloodGroup = "";
   $nameError = $emailError = $dobError = $genderError = $degreeError = $bloodGroupError = "";
 
-  //$dob = "";
-  $range = date('Y', strtotime($dob));
+  //$range = date('Y', strtotime($dob));
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
@@ -44,16 +43,35 @@
 
     if (empty($_POST["dob"])) {
       $dobError = "Cannot be empty";
-    } elseif ($range >= 1953 && $range <= 1998) {
-      $dob = $_POST["dob"];
     } else {
       $dob = $_POST["dob"];
+      if ($_POST["dob"] >= strtotime("1953") && $_POST["dob"] <= strtotime("1998")) {
+        $dob = $_POST["dob"];
+      } else {
+        $dobError = "Out of range";
+      }
     }
 
     if (empty($_POST["gender"])) {
       $genderError = "Gender is required";
     } else {
       $gender = $_POST["gender"];
+    }
+
+    if (isset($_POST["submit"])) {
+      if (!empty($_POST["degree"])) {
+        foreach ($_POST["degree"] as $checked) {
+          $degree = $_POST["degree"];
+        }
+      } else {
+        $degreeError = "Cannot be empty";
+      }
+    }
+
+    if (empty($_POST["bloodGroup"])) {
+      $bloodGroupError = "";
+    } else {
+      $bloodGroup = $_POST["bloodGroup"];
     }
   }
   ?>
@@ -63,33 +81,35 @@
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
     <div>
       <span>Name</span><br><br>
-      <input type="text" name="name" value="<?php echo $name?>"><br>
-      <span class="error"><?php echo $nameError?></span>
+      <input type="text" name="name" value="<?php echo $name ?>"><br>
+      <span class="error"><?php echo $nameError ?></span>
     </div>
     <div>
       <Span>Email</Span><br><br>
-      <input type="text" name="email" value="<?php echo $email?>"><br>
-      <span class="error"><?php echo $emailError?></span>
+      <input type="text" name="email" value="<?php echo $email ?>"><br>
+      <span class="error"><?php echo $emailError ?></span>
     </div>
     <div>
       <span>Date of Birth</span><br><br>
-      <input type="date" name="dob" value="<?php echo $dob?>"><br>
-      <span class="error"><?php echo $dobError?></span>
+      <input type="date" name="dob" value="<?php echo $dob ?>"><br>
+      <span class="error"><?php echo $dobError ?></span>
     </div>
     <div>
       <Span>Gender</Span><br><br>
-      <input type="radio" name="gender" value="male" <?php if (isset($gender) && $gender=="male") echo "checked";?>>Male
-      <input type="radio" name="gender" value="female" <?php if (isset($gender) && $gender=="female") echo "checked";?>>Female
-      <input type="radio" name="gender" value="other" <?php if (isset($gender) && $gender=="other") echo "checked";?>>Other
+      <input type="radio" name="gender" value="male" <?php if (isset($gender) && $gender == "male") echo "checked"; ?>>Male
+      <input type="radio" name="gender" value="female" <?php if (isset($gender) && $gender == "female") echo "checked"; ?>>Female
+      <input type="radio" name="gender" value="other" <?php if (isset($gender) && $gender == "other") echo "checked"; ?>>Other
       <br>
-      <span class="error"><?php echo $genderError?></span>
+      <span class="error"><?php echo $genderError ?></span>
     </div>
     <div>
       <Span>Degree</Span><br><br>
-      <input type="checkbox" name="degree" value="ssc">SSC
-      <input type="checkbox" name="degree" value="hsc">HSC
-      <input type="checkbox" name="degree" value="bsc">BSc
-      <input type="checkbox" name="degree" value="msc">MSc
+      <input type="checkbox" name="degree[]" value="ssc">SSC
+      <input type="checkbox" name="degree[]" value="hsc">HSC
+      <input type="checkbox" name="degree[]" value="bsc">BSc
+      <input type="checkbox" name="degree[]" value="msc">MSc
+      <br>
+      <span class="error"><?php echo $degreeError ?></span>
     </div>
     <div>
       <span>Blood Group</span><br><br>
@@ -101,25 +121,25 @@
       </select>
     </div>
     <div>
-      <button>Submit</button>
+      <input type="submit" name="submit">
     </div>
   </form>
 
   <br><br>
   <div class="input">
-  <?php
-  echo "Name: ", $name;
-  echo "<br>";
-  echo "Email: ", $email;
-  echo "<br>";
-  echo "Date of Birth: ", $dob;
-  echo "<br>";
-  echo "Gender: ", $gender;
-  echo "<br>";
-  echo "Degree: ", $degree;
-  echo "<br>";
-  echo "Blood Group: ", $bloodGroup;
-  ?>
+    <?php
+    echo "Name: ", $name;
+    echo "<br>";
+    echo "Email: ", $email;
+    echo "<br>";
+    echo "Date of Birth: ", $dob;
+    echo "<br>";
+    echo "Gender: ", $gender;
+    echo "<br>";
+    echo "Degree: ", $degree;
+    echo "<br>";
+    echo "Blood Group: ", $bloodGroup;
+    ?>
   </div>
 </body>
 
