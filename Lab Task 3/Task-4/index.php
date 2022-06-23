@@ -1,3 +1,43 @@
+<?php
+$message = $error = "";
+
+if (isset($_POST["submit"])) {
+    if (empty($_POST["name"])) {
+        $error = "<label class='text-danger'>Enter Name</label>";
+    } else if (empty($_POST["email"])) {
+        $error = "<label class='text-danger'>Enter an e-mail</label>";
+    } else if (empty($_POST["username"])) {
+        $error = "<label class='text-danger'>Enter a username</label>";
+    } else if (empty($_POST["password"])) {
+        $error = "<label class='text-danger'>Enter a password</label>";
+    } else if (empty($_POST["rePassword"])) {
+        $error = "<label class='text-danger'>Confirm password field cannot be empty</label>";
+    } else if (empty($_POST["gender"])) {
+        $error = "<label class='text-danger'>Gender cannot be empty</label>";
+    } else {
+        if (file_exists('data.json')) {
+            $current_data = file_get_contents('data.json');
+            $array_data = json_decode($current_data, true);
+            $extra = array(
+                "name"               =>     $_POST['name'],
+                "email"          =>     $_POST["email"],
+                "username"     =>     $_POST["username"],
+                "gender"     =>     $_POST["gender"],
+                "dob"     =>     $_POST["dob"]
+            );
+            $array_data[] = $extra;
+            $final_data = json_encode($array_data);
+            if (file_put_contents('data.json', $final_data)) {
+                $message = "<label class='text-success'>File Appended Success fully</p>";
+            }
+        } else {
+            $error = 'JSON File does not exist';
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,66 +51,53 @@
 
 <body>
     <h2>REGISTRATION</h2>
-    <form action="" method="POST">
+    <form method="POST">
+
+        <?php
+        if (isset($error)) {
+            echo $error;
+        }
+        ?>
+
         <div>
             <span>Name</span>
-            <input type="text" name="" id="">
+            <input type="text" name="name" class="alpha">
         </div>
         <div>
             <span>Email</span>
-            <input type="text" name="" id="">
+            <input type="text" name="email" class="alpha">
         </div>
         <div>
             <span>User Name</span>
-            <input type="text" name="" id="">
+            <input type="text" name="username" class="alpha">
         </div>
         <div>
             <span>Password</span>
-            <input type="text" name="" id="">
+            <input type="text" name="password" class="alpha">
         </div>
         <div>
             <span>Confirm Password</span>
-            <input type="text" name="" id="">
+            <input type="text" name="rePassword" class="alpha">
         </div>
         <div>
-            <div class="container">
-                <h4>Gender</h4>
-                <div class="gendermale">
-                    <input type="radio" name="Gender" id="male">
-                    <label for="male">
-                        <span>
-                            Male
-                        </span>
-                    </label>
-                </div>
-                <div class="genderfemale">
-                    <input type="radio" name="Gender" id="female">
-                    <label for="female">
-                        <span>
-                            Female
-                        </span>
-                    </label>
-                </div>
-                <div class="genderother">
-                    <input type="radio" name="Gender" id="other">
-                    <label for="other">
-                        <span>
-                            Other
-                        </span>
-                    </label>
-                </div>
-            </div>
+            <Span>Gender</Span><br><br>
+            <input type="radio" name="gender" value="male">Male
+            <input type="radio" name="gender" value="female">Female
+            <input type="radio" name="gender" value="other">Other
         </div>
         <div>
-            <label for="dob">Date of Birth</label>
-            <div class="container">
-                <input type="date" name="dob" id="dob" class="dob">
-            </div>
+            <span>Date of Birth</span><br><br>
+            <input type="date" name="dob">
         </div>
         <div>
-            <input type="submit" name="submit" class="submit">
-            <input type="reset" name="reset" class="reset">
+            <input type="submit" name="submit"> <input type="reset" name="reset">
         </div>
+
+        <?php
+        if (isset($message)) {
+            echo $message;
+        }
+        ?>
     </form>
 </body>
 
