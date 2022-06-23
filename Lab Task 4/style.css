@@ -7,12 +7,14 @@ body {
 
 .error {
     color: red;
+    font-size: x-small;
+    font-family: 'mono';
 }
 
 div {
     text-align: left;
-    width: 420px;
-    padding: 10px;
+    width: 720px;
+    padding: 20px 20px 20px 20px;
     border: 1px solid black;
 }
 
@@ -23,6 +25,13 @@ div {
     border: 1px solid black;
 }
 
-.loginInput {
+.alpha {
     float: right;
+}
+
+.regPage {
+    text-align: left;
+    width: 400px;
+    padding: 10px;
+    border: 1px solid black;
 }

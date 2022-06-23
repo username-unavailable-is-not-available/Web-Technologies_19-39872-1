@@ -54,11 +54,11 @@
         <h3>LOGIN</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
             <div class="loginPage">
-                User Name <input class="loginInput" type="text" name="username" value="<?php echo $username; ?>"><br>
+                User Name <input class="alpha" type="text" name="username" value="<?php echo $username; ?>"><br>
                 <span style="font-size: 12px;" class="error"><?php echo $usernameError; ?></span>
             </div>
             <div class="loginPage">
-                Password <input class="loginInput" type="password" name="password" value="<?php echo $password; ?>"><br>
+                Password <input class="alpha" type="password" name="password" value="<?php echo $password; ?>"><br>
                 <span style="font-size: 12px;" class="error"><?php echo $passwordError; ?></span>
             </div>
             <div class="loginPage">
