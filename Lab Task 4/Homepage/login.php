@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Styles/style.css">
 </head>
 
 <body>
@@ -45,9 +45,9 @@
     <div>
         <span>
             <h1>XCompany</h1>
-            <span><a href="">Home</a></span>
+            <span><a href="http://localhost/LabTask/Lab%20Task%204/Homepage/homepage.html">Home</a></span>
             <span><a href="">Login</a></span>
-            <span><a href="">Registration</a></span>
+            <span><a href="http://localhost/LabTask/Lab%20Task%204/Homepage/registration.php">Registration</a></span>
         </span>
     </div>
     <div>
@@ -65,7 +65,7 @@
                 <input type="checkbox" value="XYZ">
                 <span>Remember Me</span>
             </div><br>
-            <div class="loginPage"> <input type="submit" name="submit" id="submit"> <a href="">Forgot Password?</a></div>
+            <div class="loginPage"> <input type="submit" name="submit" id="submit"> <a href="http://localhost/LabTask/Lab%20Task%204/Homepage/forgotPassword.php">Forgot Password?</a></div>
         </form>
     </div>
     <div style="text-align: center;">
