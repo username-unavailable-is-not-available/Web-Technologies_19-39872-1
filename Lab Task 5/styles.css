@@ -1,0 +1,18 @@
+body {
+    background-color: #2b2b2b;
+    padding: 20px;
+    color: whitesmoke;
+    text-align: left;
+    font-family: 'roboto';
+}
+
+.box {
+    width: 350px;
+    padding: 10px 10px 10px 10px;
+    border: 1px solid white;
+}
+
+.alpha {
+    height: 30px;
+    padding-left: 85px;
+}
