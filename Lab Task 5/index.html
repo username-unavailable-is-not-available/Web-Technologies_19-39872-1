@@ -9,7 +9,7 @@
 </head>
 <body>
     <h2>Database connectivity using PHP</h2>
-    <form action="">
+    <form action="connect.php" method="post">
         <div class="box">
             <table>
                 <tr>
@@ -17,7 +17,7 @@
                         Username
                     </th>
                     <td class="alpha">
-                        <input type="text">
+                        <input type="text" name="username">
                     </td>
                 </tr>
                 <tr>
@@ -25,7 +25,7 @@
                         Email
                     </th>
                     <td class="alpha">
-                        <input type="text">
+                        <input type="text" name="email">
                     </td>
                 </tr>
                 <tr>
@@ -33,7 +33,7 @@
                         Password
                     </th>
                     <td class="alpha">
-                        <input type="password">
+                        <input type="text" name="password">
                     </td>
                 </tr>
             </table>
@@ -44,9 +44,8 @@
                 <span>Save</span>
             </button>
             <button>
-                <a href="info.html"><span>Display</span></a>
+                <a href="view.html"><span>Display</span></a>
             </button>
         </div>
     </form>
 </body>
-</html>
