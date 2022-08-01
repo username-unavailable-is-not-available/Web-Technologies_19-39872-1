@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LT-5</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Lab Task 5</title>
+    <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
     <h2>Database connectivity using PHP</h2>
-    <form action="connect.php" method="post">
+    <form action="insert.php" method="post">
         <div class="box">
             <table>
                 <tr>
@@ -39,13 +39,16 @@
             </table>
         </div>
         <br>
-        <div>
+        <div class="box">
             <button>
-                <span>Save</span>
+                <input type="submit" value="Save">
             </button>
+
             <button>
-                <a href="view.html"><span>Display</span></a>
+                <input type="reset" value="Reset">
             </button>
+
+            <a href="view.php" class="indexLink">Display Database</a>
         </div>
     </form>
 </body>

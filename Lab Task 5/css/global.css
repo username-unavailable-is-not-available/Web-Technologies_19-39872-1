@@ -16,3 +16,14 @@ body {
     height: 30px;
     padding-left: 85px;
 }
+
+a {
+    color: antiquewhite;
+    font-style: italic;
+    font-size: large;
+    text-decoration: none;
+}
+
+.indexLink {
+    margin-left: 70px;
+}

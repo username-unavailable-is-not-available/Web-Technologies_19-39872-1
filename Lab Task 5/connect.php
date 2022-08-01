@@ -1,19 +1,19 @@
 <?php
 
-//$servername = "localhost"
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
+$servername = 'localhost';
+$user = 'root';
+$pass = '';
+$dbname = 'LabTask';
 
-$connection = new mysqli('localhost', 'root', '', 'LabTask');
+$connection = new mysqli($servername, $user, $pass, $dbname);
 
-if (!$connection->connect_error) {
+if ($connection->connect_error) {
     die("Connection Failed" . $connection->connect_error);
 } else {
     $stmt = $connection->prepare("insert into sample_2(username, email, password) values(?, ?, ?)");
     $stmt->bind_param("sss", $username, $email, $password);
     $stmt->execute();
-    echo "Added Successfully...";
+    //echo "Added Successfully...";
     $stmt->close();
-    $connection->close();
+    //$connection->close();
 }

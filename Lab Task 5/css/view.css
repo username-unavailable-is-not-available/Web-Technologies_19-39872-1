@@ -1,0 +1,17 @@
+.box {
+    width: 520px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid whitesmoke;
+}
+
+th {
+    background-color: #4c4c4c;
+}
+
+tr:hover {
+    background-color: grey;
+}
