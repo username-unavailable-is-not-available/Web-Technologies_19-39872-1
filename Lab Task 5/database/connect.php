@@ -13,7 +13,5 @@ if ($connection->connect_error) {
     $stmt = $connection->prepare("insert into sample_2(username, email, password) values(?, ?, ?)");
     $stmt->bind_param("sss", $username, $email, $password);
     $stmt->execute();
-    //echo "Added Successfully...";
     $stmt->close();
-    //$connection->close();
 }
