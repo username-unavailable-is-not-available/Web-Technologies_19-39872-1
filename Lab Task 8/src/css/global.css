@@ -1,0 +1,26 @@
+body {
+  background-color: #2b2b2b;
+  font-family: "roboto";
+  color: whitesmoke;
+}
+
+.link {
+  color: indianred;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: black;
+}
+
+.center {
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #3a3a3a;
+}
